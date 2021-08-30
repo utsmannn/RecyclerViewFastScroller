@@ -58,8 +58,6 @@ public abstract class AbsSectionIndicator<T> extends FrameLayout implements Sect
 
     /**
      * Clients can provide a custom background color for a section indicator
-     * @param color provided in XML via the {@link R.styleable#AbsSectionIndicator_backgroundColor} parameter. If not
-     *              specified in XML, this defaults to that which is provided by {@link #getDefaultBackgroundColor()}
      */
     protected abstract void applyCustomBackgroundColorAttribute(int color);
 

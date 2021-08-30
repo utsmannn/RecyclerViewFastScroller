@@ -1,7 +1,7 @@
 package xyz.danoz.recyclerviewfastscroller.calculation;
 
 /**
- * {@link Please describe ScrollBoundsProvider!}
+ * {Please describe ScrollBoundsProvider!}
  */
 public class VerticalScrollBoundsProvider {
 

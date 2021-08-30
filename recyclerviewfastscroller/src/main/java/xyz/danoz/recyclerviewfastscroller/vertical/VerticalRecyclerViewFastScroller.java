@@ -1,9 +1,10 @@
 package xyz.danoz.recyclerviewfastscroller.vertical;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import xyz.danoz.recyclerviewfastscroller.AbsRecyclerViewFastScroller;
@@ -21,7 +22,8 @@ import xyz.danoz.recyclerviewfastscroller.calculation.progress.VerticalScrollPro
  */
 public class VerticalRecyclerViewFastScroller extends AbsRecyclerViewFastScroller implements RecyclerViewScroller {
 
-    @Nullable private VerticalScrollProgressCalculator mScrollProgressCalculator;
+    @Nullable
+    private VerticalScrollProgressCalculator mScrollProgressCalculator;
     @Nullable private VerticalScreenPositionCalculator mScreenPositionCalculator;
 
     public VerticalRecyclerViewFastScroller(Context context) {
