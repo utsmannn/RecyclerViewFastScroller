@@ -1,11 +1,12 @@
 package xyz.danoz.recyclerviewfastscroller.vertical;
 
 import android.content.Context;
+import android.util.AttributeSet;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.AttributeSet;
 
 import xyz.danoz.recyclerviewfastscroller.AbsRecyclerViewFastScroller;
 import xyz.danoz.recyclerviewfastscroller.R;
@@ -24,7 +25,9 @@ public class VerticalRecyclerViewFastScroller extends AbsRecyclerViewFastScrolle
 
     @Nullable
     private VerticalScrollProgressCalculator mScrollProgressCalculator;
-    @Nullable private VerticalScreenPositionCalculator mScreenPositionCalculator;
+
+    @Nullable
+    private VerticalScreenPositionCalculator mScreenPositionCalculator;
 
     public VerticalRecyclerViewFastScroller(Context context) {
         this(context, null);
@@ -54,7 +57,8 @@ public class VerticalRecyclerViewFastScroller extends AbsRecyclerViewFastScrolle
         if (mScreenPositionCalculator == null) {
             return;
         }
-        mHandle.setY(mScreenPositionCalculator.getYPositionFromScrollProgress(scrollProgress));
+        final float position = mScreenPositionCalculator.getYPositionFromScrollProgress(scrollProgress);
+        AnimateUtils.animateYSimple(mHandle, position);
     }
 
     protected void onCreateScrollProgressCalculator() {

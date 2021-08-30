@@ -7,7 +7,7 @@ import android.graphics.Color;
  */
 public class ColorDataSet {
 
-    private static final int DATA_SET_SIZE = 100;
+    private static final int DATA_SET_SIZE = 15;
     private static final float NUM_HUES = 359;
     private static final ColorData[] mColors = new ColorData[DATA_SET_SIZE];
 
