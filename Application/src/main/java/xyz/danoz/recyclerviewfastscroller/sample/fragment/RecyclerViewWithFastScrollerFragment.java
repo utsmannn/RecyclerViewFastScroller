@@ -53,7 +53,7 @@ public class RecyclerViewWithFastScrollerFragment extends Fragment {
         fastScroller.setRecyclerView(recyclerView);
 
         // Connect the scroller to the recycler (to let the recycler scroll the scroller's handle)
-        recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
+        //recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
         //recyclerView.setOnScrollChangeListener(fastScroller.getOnScrollListener());
 
         setRecyclerViewLayoutManager(recyclerView);

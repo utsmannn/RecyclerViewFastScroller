@@ -44,7 +44,6 @@ public class RecyclerViewWithSectionIndicatorFragment extends Fragment {
         fastScroller.setRecyclerView(recyclerView);
 
         // Connect the scroller to the recycler (to let the recycler scroll the scroller's handle)
-        recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
 
         // Connect the section indicator to the scroller
         fastScroller.setSectionIndicator(sectionTitleIndicator);

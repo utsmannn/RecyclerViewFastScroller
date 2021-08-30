@@ -137,6 +137,7 @@ public abstract class AbsRecyclerViewFastScroller extends FrameLayout implements
     @Override
     public void setRecyclerView(RecyclerView recyclerView) {
         mRecyclerView = recyclerView;
+        mRecyclerView.setOnScrollListener(getOnScrollListener());
     }
 
     public void setSectionIndicator(SectionIndicator sectionIndicator) {
