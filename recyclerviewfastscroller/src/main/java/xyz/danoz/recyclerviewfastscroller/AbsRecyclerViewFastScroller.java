@@ -13,12 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.SectionIndexer;
 
 import xyz.danoz.recyclerviewfastscroller.calculation.progress.ScrollProgressCalculator;
@@ -35,9 +34,9 @@ public abstract class AbsRecyclerViewFastScroller extends FrameLayout implements
 
     private static final int[] STYLEABLE = R.styleable.AbsRecyclerViewFastScroller;
     /** The long bar along which a handle travels */
-    protected final View mBar;
+    protected final ImageView mBar;
     /** The handle that signifies the user's progress in the list */
-    protected final View mHandle;
+    protected final ImageView mHandle;
 
     /* TODO:
      *      Consider making RecyclerView final and should be passed in using a custom attribute
@@ -72,13 +71,18 @@ public abstract class AbsRecyclerViewFastScroller extends FrameLayout implements
             mBar = findViewById(R.id.scroll_bar);
             mHandle = findViewById(R.id.scroll_handle);
 
-            Drawable barDrawable = attributes.getDrawable(R.styleable.AbsRecyclerViewFastScroller_rfs_barBackground);
-            int barColor = attributes.getColor(R.styleable.AbsRecyclerViewFastScroller_rfs_barColor, Color.GRAY);
-            applyCustomAttributesToView(mBar, barDrawable, barColor);
+            Drawable barCustomDrawable = attributes.getDrawable(R.styleable.AbsRecyclerViewFastScroller_rfs_barDrawable);
+            Drawable handleCustomDrawable = attributes.getDrawable(R.styleable.AbsRecyclerViewFastScroller_rfs_handleDrawable);
 
-            Drawable handleDrawable = attributes.getDrawable(R.styleable.AbsRecyclerViewFastScroller_rfs_handleBackground);
-            int handleColor = attributes.getColor(R.styleable.AbsRecyclerViewFastScroller_rfs_handleColor, Color.GRAY);
-            applyCustomAttributesToView(mHandle, handleDrawable, handleColor);
+            int barWidth = attributes.getDimensionPixelSize(R.styleable.AbsRecyclerViewFastScroller_rfs_barWidth, 10);
+            int handleWidth = attributes.getDimensionPixelSize(R.styleable.AbsRecyclerViewFastScroller_rfs_handleWidth, 50);
+            int handleHeight = attributes.getDimensionPixelSize(R.styleable.AbsRecyclerViewFastScroller_rfs_handleHeight, 70);
+
+            float handleScale = attributes.getFloat(R.styleable.AbsRecyclerViewFastScroller_rfs_handleScale, 1);
+
+            applyBarDrawable(mBar, barCustomDrawable, barWidth);
+            applyHandleDrawable(mHandle, handleCustomDrawable, handleScale, handleWidth, handleHeight);
+
         } finally {
             attributes.recycle();
         }
@@ -86,44 +90,21 @@ public abstract class AbsRecyclerViewFastScroller extends FrameLayout implements
         setOnTouchListener(new FastScrollerTouchListener(this));
     }
 
-    private void applyCustomAttributesToView(View view, Drawable drawable, int color) {
+    private void applyBarDrawable(ImageView imageView, Drawable drawable, int dimension) {
         if (drawable != null) {
-            setViewBackground(view, drawable);
-        } else {
-            view.setBackgroundColor(color);
+            imageView.setImageDrawable(drawable);
+            imageView.getLayoutParams().width = dimension;
         }
     }
 
-    /**
-     * Provides the ability to programmatically set the color of the fast scroller's handle
-     * @param color for the handle to be
-     */
-    public void setHandleColor(int color) {
-        mHandle.setBackgroundColor(color);
-    }
-
-    /**
-     * Provides the ability to programmatically set the background drawable of the fast scroller's handle
-     * @param drawable for the handle's background
-     */
-    public void setHandleBackground(Drawable drawable) {
-        setViewBackground(mHandle, drawable);
-    }
-
-    /**
-     * Provides the ability to programmatically set the color of the fast scroller's bar
-     * @param color for the bar to be
-     */
-    public void setBarColor(int color) {
-        mBar.setBackgroundColor(color);
-    }
-
-    /**
-     * Provides the ability to programmatically set the background drawable of the fast scroller's bar
-     * @param drawable for the bar's background
-     */
-    public void setBarBackground(Drawable drawable) {
-        setViewBackground(mBar, drawable);
+    private void applyHandleDrawable(ImageView imageView, Drawable drawable, float scale, int width, int height) {
+        if (drawable != null) {
+            imageView.setImageDrawable(drawable);
+            imageView.getLayoutParams().width = width;
+            imageView.getLayoutParams().height = height;
+            imageView.setScaleX(scale);
+            imageView.setScaleY(scale);
+        }
     }
 
     @TargetApi(VERSION_CODES.JELLY_BEAN)

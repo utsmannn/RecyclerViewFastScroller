@@ -20,9 +20,10 @@
         android:layout_alignParentEnd="true"
         android:paddingRight="@dimen/margin_small"
         android:paddingEnd="@dimen/margin_small"
-
-        recyclerviewfastscroller:rfs_barColor="@color/fastScrollBarColor"
-        recyclerviewfastscroller:rfs_handleBackground="@drawable/fast_scroller_handle_rounded"
+        recyclerviewfastscroller:rfs_barDrawable="@drawable/ic_track"
+        recyclerviewfastscroller:rfs_handleDrawable="@drawable/ic_thumb"
+        recyclerviewfastscroller:rfs_handleWidth="50dp"
+        recyclerviewfastscroller:rfs_handleHeight="65dp"
         />
 
 </RelativeLayout>

@@ -11,4 +11,9 @@ object AnimateUtils {
             .y(valueY)
             .start()
     }
+
+    @JvmStatic
+    fun applyDimensions(view: View, width: Float) {
+        view.layoutParams.width = width.toInt()
+    }
 }

@@ -20,9 +20,6 @@
         android:layout_alignParentEnd="true"
         android:paddingRight="@dimen/margin_small"
         android:paddingEnd="@dimen/margin_small"
-
-        recyclerviewfastscroller:rfs_barColor="@color/fastScrollBarColor"
-        recyclerviewfastscroller:rfs_handleBackground="@drawable/fast_scroller_handle_rounded"
         />
 
     <xyz.danoz.recyclerviewfastscroller.sample.ui.example.ColorGroupSectionTitleIndicator
